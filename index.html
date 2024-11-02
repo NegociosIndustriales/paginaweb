@@ -1,85 +1,109 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Negocios Industriales México</title>
+    <title>Chat Table</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            overflow: hidden;
         }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .kanban-board {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .kanban-column {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-        }
-        .kanban-column h2 {
-            font-size: 1.2em;
-            color: #555;
-        }
-        .kanban-item {
-            background-color: #e8f0fe;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            color: #333;
-            font-size: 1em;
-        }
-        .add-item {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
+
+        .chat-messages {
             padding: 10px;
-            width: 100%;
+            height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .chat-message {
+            background-color: #e6f3ff;
+            padding: 8px;
             border-radius: 5px;
-            font-size: 1em;
+            margin-bottom: 8px;
+            max-width: 70%;
+            color: #0056b3;
+        }
+
+        .input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #007bff;
+            background-color: #e6f3ff;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .input-area button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
             cursor: pointer;
         }
-        .add-item:hover {
+
+        .input-area button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Negocios Industriales México</h1>
-    <div class="kanban-board">
-        <div class="kanban-column">
-            <h2>RFQ Linkedin</h2>
-            <div class="kanban-item">https://www.linkedin.com/feed/update/urn:li:activity:7257505060371214337?utm_source=share&utm_medium=member_desktop</div>
-            <div class="kanban-item">Curso de fotografía</div>
-            <button class="add-item">Añadir interés</button>
-        </div>
-        <div class="kanban-column">
-            <h2>RFQ WhatsApp</h2>
-            <div class="kanban-item">Certificación en Six Sigma</div>
-            <div class="kanban-item">https://chat.whatsapp.com/DeNN7kLJPQ7KxklkST5DQa</div>
-            <button class="add-item">Añadir objetivo</button>
-        </div>
-        <div class="kanban-column">
-            <h2>Proyectos</h2>
-            <div class="kanban-item">Desarrollar portafolio online</div>
-            <div class="kanban-item">Investigación sobre IA en educación</div>
-            <button class="add-item">Añadir proyecto</button>
-        </div>
+
+<div class="chat-container">
+    <!-- Chat Messages Section -->
+    <div class="chat-messages" id="chatMessages">
+        <!-- Example message -->
+        <div class="chat-message">Hello! Welcome to the chat.</div>
+        <div class="chat-message">How can I help you today?</div>
     </div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+        <input type="text" id="messageInput" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        const messageInput = document.getElementById("messageInput");
+        const messageText = messageInput.value.trim();
+
+        if (messageText) {
+            const chatMessages = document.getElementById("chatMessages");
+            const newMessage = document.createElement("div");
+            newMessage.classList.add("chat-message");
+            newMessage.textContent = messageText;
+            chatMessages.prepend(newMessage);
+            messageInput.value = "";
+        }
+    }
+</script>
+
 </body>
 </html>
