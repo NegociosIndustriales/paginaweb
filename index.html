@@ -3,35 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Table</title>
+    <title>Negocios Industriales</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            flex-direction: column;
             margin: 0;
             background-color: #f2f2f2;
+            color: #333;
         }
         
-        .chat-container {
-            width: 100%;
-            max-width: 600px;
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             border: 1px solid #007bff;
             border-radius: 8px;
             background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
         }
 
-        .chat-messages {
+        .chat-container {
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             padding: 10px;
-            height: 400px;
+        }
+
+        .chat-messages {
             overflow-y: auto;
+            flex: 1;
             display: flex;
             flex-direction: column-reverse;
+            padding-bottom: 10px;
         }
 
         .chat-message {
@@ -39,15 +61,14 @@
             padding: 8px;
             border-radius: 5px;
             margin-bottom: 8px;
-            max-width: 70%;
+            max-width: 80%;
             color: #0056b3;
         }
 
         .input-area {
             display: flex;
-            padding: 10px;
             border-top: 1px solid #007bff;
-            background-color: #e6f3ff;
+            padding: 10px 0 0;
         }
 
         .input-area input {
@@ -70,40 +91,99 @@
         .input-area button:hover {
             background-color: #0056b3;
         }
+
+        .tags, .entries {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .footer:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
-<div class="chat-container">
-    <!-- Chat Messages Section -->
-    <div class="chat-messages" id="chatMessages">
-        <!-- Example message -->
-        <div class="chat-message">Hello! Welcome to the chat.</div>
-        <div class="chat-message">How can I help you today?</div>
+    <!-- Header -->
+    <div class="header">Negocios Industriales</div>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Chat Column -->
+        <div class="column">
+            <div class="chat-container">
+                <!-- Chat Messages Section -->
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Example message -->
+                    <div class="chat-message">Welcome to the industrial networking chat!</div>
+                    <div class="chat-message">Feel free to start the conversation!</div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <input type="text" id="messageInput" placeholder="Type your message here...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tags Column -->
+        <div class="column">
+            <div class="tags">
+                <h2>Etiquetas</h2>
+                <!-- Example Tags -->
+                <p>- Suppliers</p>
+                <p>- Buyers</p>
+                <p>- Industrial Experts</p>
+                <p>- Leaders</p>
+            </div>
+        </div>
+
+        <!-- Entries Column -->
+        <div class="column">
+            <div class="entries">
+                <h2>Entradas</h2>
+                <!-- Example Entries -->
+                <p>- Industrial news update</p>
+                <p>- Latest suppliers</p>
+                <p>- Upcoming events</p>
+                <p>- Market analysis</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Input Area -->
-    <div class="input-area">
-        <input type="text" id="messageInput" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
+    <!-- Footer -->
+    <div class="footer" onclick="window.location.href='https://wa.me/'">
+        Contacto a WhatsApp
     </div>
-</div>
 
-<script>
-    function sendMessage() {
-        const messageInput = document.getElementById("messageInput");
-        const messageText = messageInput.value.trim();
+    <script>
+        function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const messageText = messageInput.value.trim();
 
-        if (messageText) {
-            const chatMessages = document.getElementById("chatMessages");
-            const newMessage = document.createElement("div");
-            newMessage.classList.add("chat-message");
-            newMessage.textContent = messageText;
-            chatMessages.prepend(newMessage);
-            messageInput.value = "";
+            if (messageText) {
+                const chatMessages = document.getElementById("chatMessages");
+                const newMessage = document.createElement("div");
+                newMessage.classList.add("chat-message");
+                newMessage.textContent = messageText;
+                chatMessages.prepend(newMessage);
+                messageInput.value = "";
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
 </html>
